@@ -43,3 +43,59 @@ SocksPort 9050 IsolateSOCKSAuth IsolateDestAddr IsolateDestPort
 
 # (default, usually present)
 DataDirectory /var/lib/tor
+
+sudo systemctl restart tor
+sudo systemctl enable tor
+
+Authentication Options
+Option A: Cookie Authentication (recommended)
+
+sudo usermod -aG debian-tor $USER
+newgrp debian-tor
+ls -l /run/tor/control.authcookie
+
+Option B: Password Authentication (fallback)
+
+tor --hash-password "YourPass"
+
+Add the hash to /etc/tor/torrc:
+HashedControlPassword <hash>
+
+
+Save plaintext password in ~/.config/check-tor.conf:
+mkdir -p ~/.config
+echo 'CONTROL_PASSWORD=YourPass' > ~/.config/check-tor.conf
+chmod 600 ~/.config/check-tor.conf
+
+Optional Per-User Config
+
+File: ~/.config/check-tor.conf
+SOCKS_HOST=127.0.0.1
+SOCKS_PORT=9050
+CONTROL_HOST=127.0.0.1
+CONTROL_PORT=9051
+TOR_SERVICE=tor
+CACHE_DIR="$HOME/.cache/check-tor"
+# CONTROL_PASSWORD=...
+
+
+Install Script
+
+chmod +x check-tor
+sudo install -m 0755 check-tor /usr/local/bin/check-tor
+
+Usage
+Non-interactive flags:
+
+check-tor --verify        # Quick service + exit IP check + SAFE METER
+check-tor --newnym        # Rotate Tor circuit
+check-tor --show-ips      # Direct vs Tor IPs + country
+check-tor --score         # SAFE METER only
+check-tor --json          # JSON status
+check-tor --fix-controlport  # Auto-fix torrc + restart (root)
+
+Interactive menu:
+check-tor
+
+
+
