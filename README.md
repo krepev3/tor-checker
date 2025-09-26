@@ -24,3 +24,22 @@ On Debian/Ubuntu/Kali:
 sudo apt update
 sudo apt install -y tor torsocks curl ca-certificates iproute2 \
   netcat-openbsd vim-common
+
+
+Configure Tor
+
+Edit /etc/tor/torrc and add the following configuration:
+
+SocksPort 9050
+ControlPort 9051
+
+# Cookie auth is simplest & safest
+CookieAuthentication 1
+CookieAuthFile /run/tor/control.authcookie
+CookieAuthFileGroupReadable 1
+
+# (optional) Better stream isolation
+SocksPort 9050 IsolateSOCKSAuth IsolateDestAddr IsolateDestPort
+
+# (default, usually present)
+DataDirectory /var/lib/tor
