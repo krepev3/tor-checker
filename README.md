@@ -46,14 +46,16 @@ Edit /etc/tor/torrc and add the following configuration:
   - sudo systemctl restart tor
   - sudo systemctl enable tor
 
+
+
 Authentication Options
+
 Option A: Cookie Authentication (recommended)
   - sudo usermod -aG debian-tor $USER
   - newgrp debian-tor
   - ls -l /run/tor/control.authcookie
 
 Option B: Password Authentication (fallback)
-
   - tor --hash-password "YourPass"
 
 Add the hash to /etc/tor/torrc:
