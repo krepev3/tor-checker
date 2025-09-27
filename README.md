@@ -18,7 +18,7 @@ A Bash utility to quickly verify Tor connectivity, rotate circuits, check for DN
 
 ## 🚀 Step-by-Step Setup
 
-### 1. Install Dependencies
+### 1. DEpendencies and COnfiguration
 On Debian/Ubuntu/Kali:
 ```bash
   - sudo apt update
