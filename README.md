@@ -63,7 +63,7 @@ Add the hash to /etc/tor/torrc:
 Save plaintext password in ~/.config/check-tor.conf:
   - mkdir -p ~/.config
   - echo 'CONTROL_PASSWORD=YourPass' > ~/.config/check-tor.conf
--   chmod 600 ~/.config/check-tor.conf
+  - chmod 600 ~/.config/check-tor.conf
 
 Optional Per-User Config
 
