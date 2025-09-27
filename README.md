@@ -1,4 +1,4 @@
-# tor-checker  
+# tor-checker v1.0
 Convenient Tor Checker for non-Tor Browser environments.  
 A Bash utility to quickly verify Tor connectivity, rotate circuits, check for DNS leaks, and measure anonymity strength (SAFE METER).
 
